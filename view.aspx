@@ -32,7 +32,14 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
+  
+.button__icon {
+	font-size: 24px;
+	color: #7875B5;
+ position: absolute;
+    bottom: -5;
+    right: 0;
+}
     </style>
 </head>
 <body>
@@ -46,7 +53,7 @@
     <Columns>
         <asp:BoundField DataField="userID" HeaderText="User ID" />
         <asp:BoundField DataField="client_name" HeaderText="Username" />
-        <asp:HyperLinkField HeaderText="Details" NavigateUrl="http://localhost:51802/admin/details.aspx" Text="view" />
+      <asp:HyperLinkField HeaderText="Details" Text="View" DataNavigateUrlFields="userId" DataNavigateUrlFormatString="details.aspx?userId={0}" />
     </Columns>
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
@@ -58,8 +65,7 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#00547E" />
 </asp:GridView>
-
-        </div> <!-- Closed the container div -->
+        </div> 
     </form>
 </body>
 </html>

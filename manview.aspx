@@ -47,7 +47,8 @@
     <Columns>
         <asp:BoundField DataField="managerID" HeaderText="Manager ID" />
         <asp:BoundField DataField="manager_name" HeaderText="Username" />
-        <asp:HyperLinkField HeaderText="Details" NavigateUrl="http://localhost:51802/login.aspx" Text="view" />
+   <asp:HyperLinkField HeaderText="Details" Text="View" DataNavigateUrlFields="managerId" DataNavigateUrlFormatString="mandetails.aspx?managerId={0}" />
+    
     </Columns>
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
