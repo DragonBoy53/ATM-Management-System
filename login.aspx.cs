@@ -33,7 +33,7 @@ namespace ATMModel
                     if (result != null && result != DBNull.Value)
                     {
                         username = result.ToString();
-
+                        Session["user_accno"] = accountno;
                         userType = 'U';
 
                     }
