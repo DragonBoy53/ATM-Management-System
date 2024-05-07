@@ -47,7 +47,9 @@
 </head>
 <body>
     <section>
-        <h1> Welcome Admin#  </h1>
+        <h1>Welcome 
+                <asp:Label ID="name" runat="server" Text=""></asp:Label>
+            </h1>
         <a href="view.html" class="button">View Users</a>
         <a href="addition.html" class="button">Add User</a>
         <a href="removal.html" class="button">Remove User</a>
