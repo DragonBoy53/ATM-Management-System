@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Data;
+using System.Xml.Linq;
 
 namespace ATMModel
 {
@@ -16,24 +12,41 @@ namespace ATMModel
         {
             String connString = ConfigurationManager.ConnectionStrings["ATMEntities"].ConnectionString;
 
-            if (!IsPostBack)
+            if (Request.QueryString["managerID"] != null)
             {
-                if (Session["AtmStatus"] != null)
-                {
-                    AtmStatus.SelectedValue = Session["AtmStatus"].ToString();
-                }
+                string query = "SELECT manager_name FROM [Manager] WHERE managerID = @ManagerID";
 
-                if (Request.QueryString["username"] != null)
+                using (SqlConnection connection = new SqlConnection(connString))
                 {
-                    string username = Request.QueryString["username"].ToString();
-                    name.Text = username;
-                }
-                else
-                {
-                    Response.Redirect("login.aspx");
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ManagerID", Request.QueryString["managerID"].ToString());
+                        connection.Open();
+                        var result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            name.Text = result.ToString();
+                        }
+                        else
+                        {
+                            // Handle the case where managerID is not found
+                            Response.Redirect("login.aspx");
+                        }
+                    }
                 }
             }
+            else
+            {
+                // Redirect if managerID is not provided in the query string
+                Response.Redirect("login.aspx");
+            }
 
+            // Check if this is a postback to restore the selected ATM status
+            if (!IsPostBack && Session["AtmStatus"] != null)
+            {
+                AtmStatus.SelectedValue = Session["AtmStatus"].ToString();
+            }
         }
 
         protected void AtmStatus_SelectedIndexChanged(object sender, EventArgs e)
@@ -44,42 +57,33 @@ namespace ATMModel
 
         protected void CheckB_Click(object sender, EventArgs e)
         {
-            string managerName = name.Text;
-
-            string connString = ConfigurationManager.ConnectionStrings["ATMEntities"].ConnectionString;
-            string query = "SELECT managerID FROM [Manager] WHERE manager_name = @ManagerName";
-
-            using (SqlConnection connection = new SqlConnection(connString))
+            try
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@ManagerName", managerName);
-
-                    try
-                    {
-                        connection.Open();
-                        var result = command.ExecuteScalar();
-
-                        if (result != null && result != DBNull.Value)
-                        {
-                            int managerID = Convert.ToInt32(result);
-                            Response.Redirect("CheckBalance.aspx?managerID=" + managerID);
-                        }
-                        else
-                        {
-                            // Set the error message
-                            Message.Text = "Manager not found or invalid manager name.";
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle the exception by setting an error message
-                        Message.Text = "Error retrieving managerID: " + ex.Message;
-                    }
-                }
+                Response.Redirect("CheckBalance.aspx?managerID=" + Request.QueryString["managerID"].ToString());
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception by setting an error message
+                Message.Text = "Error retrieving managerID: " + ex.Message;
             }
         }
 
+        protected void checkbalancebutton_Click(object sender, EventArgs e)
+        {
+            string managerID = Request.QueryString["managerID"].ToString();
+            if (managerID != null)
+            {
+                Response.Redirect("CheckBalance.aspx?managerID=" + managerID);
+            }
+        }
 
+        protected void atmstatus_Click(object sender, EventArgs e)
+        {
+            string managerID = Request.QueryString["managerID"].ToString();
+            if (managerID != null)
+            {
+                Response.Redirect("manager.aspx?managerID=" + managerID);
+            }
+        }
     }
 }
