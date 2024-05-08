@@ -39,14 +39,43 @@
         background-color: #0056b3;
         border-color: #0056b3;
     }
+    .buttonmode {
+    width: 200px;
+    background: #fff;
+    font-size: 14px;
+    margin-top: 20px;
+    padding: 20px 20px;
+    border-radius: 26px;
+    border: 1px solid #D4D3E8;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center horizontally */
+    color: #4C489D;
+    box-shadow: 0px 2px 2px #5C5696;
+    cursor: pointer;
+    transition: .2s;
+}
+
+    
+.buttonmode:active,
+.buttonmode:focus,
+.buttonmode:hover {
+	border-color: #6A679E;
+    background-color:grey;
+	outline: none;
+}
+
     </style>
 </head>
 <body>
     <section>
         <h1>ATM SYSTEM</h1>
-        <a href="login.aspx" class="button">User</a>
-        <a href="login.aspx" class="button">Manager</a>
-        <a href="login.aspx" class="button">Admin</a>
+        <a href="login.aspx" class="buttonmode" >User</a>
+        <a href="login.aspx" class="buttonmode">Manager</a>
+        <a href="login.aspx" class="buttonmode">Admin</a>
     </section>
 </body>
 </html>

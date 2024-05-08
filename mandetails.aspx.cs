@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class admin_mandetails : System.Web.UI.Page
 {
-    String connString = ConfigurationManager.ConnectionStrings["ATM_machine"].ConnectionString;
+    String connString = ConfigurationManager.ConnectionStrings["ATMEntities"].ConnectionString;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,7 +25,7 @@ public partial class admin_mandetails : System.Web.UI.Page
 
     private void DisplayManagerDetails(string managerId)
     {
-        string query = "SELECT managerID, manager_name, account_no, PINcode, status FROM [bank_manager] WHERE managerId = @managerId";
+        string query = "SELECT managerID, manager_name, account_no, PINcode, attempts FROM [Manager] WHERE managerId = @managerId";
 
         using (SqlConnection connection = new SqlConnection(connString))
         {
@@ -40,7 +40,16 @@ public partial class admin_mandetails : System.Web.UI.Page
                     lblUsername.Text = "Username: " + reader["manager_name"].ToString();
                     lblAccountNo.Text = "Account Number: " + reader["account_no"].ToString();
                     lblPinCode.Text = "PIN Code: " + reader["PINcode"].ToString();
-                     lblStatus.Text = "Status: " + reader["status"].ToString();
+                     if(Convert.ToInt32(reader["attempts"])==3)
+                    {
+                       lblStatus.Text = "Status: Blocked"  ;
+
+                    }
+                    else
+                    {
+                        lblStatus.Text = "Status: Active";
+                    }
+                    
                 }
                 reader.Close();
             }

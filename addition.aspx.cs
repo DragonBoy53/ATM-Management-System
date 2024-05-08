@@ -13,7 +13,7 @@ public partial class admin_addition : System.Web.UI.Page
     {
 
     }
-    String connString = ConfigurationManager.ConnectionStrings["ATM_machine"].ConnectionString;
+    String connString = ConfigurationManager.ConnectionStrings["ATMEntities"].ConnectionString;
     private bool UserIDExist(string name, string accno, string pin, string contact)
     {
         string query = "SELECT * FROM [Client_details] where account_no = @accno ";

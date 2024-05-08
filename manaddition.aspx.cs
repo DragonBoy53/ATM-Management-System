@@ -15,10 +15,10 @@ namespace atm_project
         {
 
         }
-        String connString = ConfigurationManager.ConnectionStrings["ATM_machine"].ConnectionString;
+        String connString = ConfigurationManager.ConnectionStrings["ATMEntities"].ConnectionString;
         private bool ManagerIDExist(string name, string accno, string pin)
         {
-            string query = "SELECT * FROM [bank_manager] where account_no = @accno ";
+            string query = "SELECT * FROM [Manager] where account_no = @accno ";
             using (SqlConnection connection = new SqlConnection(connString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -32,7 +32,7 @@ namespace atm_project
                     }
                     else
                     {
-                        string addQuery = "DECLARE @newmanagerID INT; SET @newmanagerID = (SELECT ISNULL(MAX(managerID), 0) + 1 FROM bank_manager);" + "insert into  [bank_manager] (managerID,manager_name, account_no, PINcode) values(@newmanagerID, @name, @accno, @pin)";
+                        string addQuery = "DECLARE @newmanagerID INT; SET @newmanagerID = (SELECT ISNULL(MAX(managerID), 0) + 1 FROM Manager);" + "insert into  [Manager] (managerID,manager_name, account_no, PINcode) values(@newmanagerID, @name, @accno, @pin)";
 
                         using (SqlCommand addCommand = new SqlCommand(addQuery, connection))
                         {

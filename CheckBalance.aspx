@@ -42,6 +42,50 @@
             font-size: 16px;
             margin-right: 10px;
         }
+        .deposit_input {
+	border: none;
+	border-bottom: 2px solid #D1D1D4;
+	background: none;
+	padding: 10px;
+	padding-left: 24px;
+	font-weight: 700;
+	width: 75%;
+	transition: .2s;
+}
+
+.deposit_input:active,
+.deposit_input:focus,
+.deposit_input:hover {
+	outline: none;
+	border-bottom-color: #6A679E;
+}
+           .buttonmode {
+    width: 200px;
+    background: #fff;
+    font-size: 14px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 26px;
+    border: 1px solid #D4D3E8;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    justify-content: center; /* Center horizontally */
+    color: #4C489D;
+    box-shadow: 0px 2px 2px #5C5696;
+    cursor: pointer;
+    transition: .2s;
+}
+
+
+    
+.buttonmode:active,
+.buttonmode:focus,
+.buttonmode:hover {
+	border-color: #6A679E;
+    background-color:grey;
+	outline: none;
+}
     </style>
 </head>
 <body>
@@ -51,8 +95,8 @@
         <asp:Label ID="balance" runat="server" Text=""></asp:Label>
         <br/>
         
-            <asp:TextBox ID="Amount" runat="server" placeholder="Enter Amount" ></asp:TextBox>
-            <asp:Button runat="server" class="button" OnClick="ManagerDeposit" Text="Deposit"></asp:Button>
+            <asp:TextBox ID="Amount" runat="server" placeholder="Enter Amount" CssClass="deposit_input" ></asp:TextBox>
+            <asp:Button runat="server" class="buttonmode" OnClick="ManagerDeposit" Text="Deposit" Width="100px"></asp:Button>
 				    
         
         

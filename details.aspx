@@ -60,6 +60,7 @@
             <asp:Label ID="lblPinCode" CssClass="label" runat="server" Text=""></asp:Label>
             <asp:Label ID="lblBalance" CssClass="label" runat="server" Text=""></asp:Label>
             <asp:Label ID="lblStatus" CssClass="label" runat="server" Text=""></asp:Label>
+            <asp:Label ID="lblcontactno" CssClass="label" runat="server" Text=""></asp:Label>
         </div>
     </form>
 </body>

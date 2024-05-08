@@ -1,11 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="admin.aspx.cs" Inherits="atm_project.admin" %>
-
+﻿<%@ Page Title="User" Language="C#" AutoEventWireup="true" CodeFile="User.aspx.cs" Inherits="ATMModel.User" %>
 <!DOCTYPE html>
-<html lang="en">
-<title>Welcome page</title>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <title>User - Home</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,11 +15,10 @@
             align-items: center;
             height: 100vh;
         }
-
         .button {
             width: 200px;
             padding: 10px;
-            margin: 30px; /* Adjusted to only vertical margin */
+            margin: 10px; /* Adjusted to only vertical margin */
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
@@ -33,16 +30,19 @@
             text-align: center;
             display: block;
         }
-
+        .button:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .bottom-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
         h1 {
             margin-bottom: 20px; /* Add some space below the heading */
             text-align: center;
             align-items: center;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
         }
             .buttonmode {
     width: 200px;
@@ -76,16 +76,17 @@
 </head>
 <body>
     <section>
-        <h1>Welcome 
-                <asp:Label ID="name" runat="server" Text=""></asp:Label>!
-            </h1>
-        <a href="view.aspx" class="buttonmode">View Users</a>
-        <a href="addition.aspx" class="buttonmode">Add User</a>
-        <a href="removal.aspx" class="buttonmode">Remove User</a>
-        <a href="manview.aspx" class="buttonmode">View Managers</a>
-        <a href="manaddition.aspx" class="buttonmode">Add Manager</a>
-        <a href="manremoval.aspx" class="buttonmode">Remove Manager</a>
+        <h2>Welcome  <asp:Label ID="name" runat="server" Text=""></asp:Label>!</h2>
+        <a href="details.aspx" class="buttonmode">View Account Information</a>
+     <a href="withdraw.aspx" class="buttonmode">Withdraw</a>
 
+
+
+        <a href="deposit.aspx" class="buttonmode">Deposit</a>
+        <a href="transfer.aspx" class="buttonmode" >Transfer</a>
     </section>
+    <div class="bottom-right">
+        <a href="login.aspx" class="buttonmode" >Logout</a>
+    </div>
 </body>
 </html>

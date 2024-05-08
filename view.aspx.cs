@@ -9,7 +9,7 @@ namespace atm_project
     public partial class view : System.Web.UI.Page
     {
 
-        string connString = ConfigurationManager.ConnectionStrings["ATM_machine"].ConnectionString;
+        string connString = ConfigurationManager.ConnectionStrings["ATMEntities"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
         }

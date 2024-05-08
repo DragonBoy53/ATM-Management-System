@@ -201,11 +201,11 @@ body {
 				 <form id="loginForm" runat="server" class="login">
 				    <div class="login__field">
 				        <i class="login__icon fas fa-user"></i>
-				        <asp:TextBox ID="txtUsername" runat="server" CssClass="login__input" placeholder="User name / Email"></asp:TextBox>
+				        <asp:TextBox ID="txtUsername" runat="server" CssClass="login__input" placeholder="Account No."></asp:TextBox>
 				    </div>
 				    <div class="login__field">
 				        <i class="login__icon fas fa-lock"></i>
-				        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="login__input" placeholder="Password"></asp:TextBox>
+				        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="login__input" placeholder="Pin"></asp:TextBox>
 				    </div>
 				    <asp:Button ID="btnLogin" runat="server" Text="Log In Now" OnClick="btnLogin_Click" CssClass="login__submit" />
 				     <asp:Label ID="Msg" runat="server" Text=""></asp:Label>

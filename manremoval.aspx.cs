@@ -11,10 +11,10 @@ namespace atm_project
 {
     public partial class manremoval : System.Web.UI.Page
     {
-        String connString = ConfigurationManager.ConnectionStrings["ATM_machine"].ConnectionString;
+        String connString = ConfigurationManager.ConnectionStrings["ATMEntities"].ConnectionString;
         private bool ManagerIDExist(string managerID)
         {
-            string query = "SELECT * FROM [bank_manager] where managerID = @managerID ";
+            string query = "SELECT * FROM [Manager] where managerID = @managerID ";
             using (SqlConnection connection = new SqlConnection(connString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -24,7 +24,7 @@ namespace atm_project
                     var result = command.ExecuteScalar();
                     if (result != null && result != DBNull.Value)
                     {
-                        string deleteQuery = "delete from [bank_manager] where managerID= @managerID";
+                        string deleteQuery = "delete from [Manager] where managerID= @managerID";
                         using (SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection))
                         {
                             deleteCommand.Parameters.AddWithValue("@managerID", managerID);

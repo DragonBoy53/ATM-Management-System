@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="view.aspx.cs" Inherits="atm_project.view" %>
+﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="view.aspx.cs" Inherits="atm_project.view" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +48,7 @@
             <h1>Users list</h1>
         </section>
         <div class="grid-container">
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ATM_machine %>" SelectCommand="SELECT userid, client_name FROM [client_details]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ATMEntities %>" SelectCommand="SELECT userid, client_name FROM [client_details]"></asp:SqlDataSource>
             <asp:GridView ID="userlist" runat="server" AutoGenerateColumns="False" DataKeyNames="userid" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Height="285px" Width="363px">
     <Columns>
         <asp:BoundField DataField="userID" HeaderText="User ID" />
