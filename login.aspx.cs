@@ -13,12 +13,12 @@ namespace ATMModel
 {
     public partial class login : System.Web.UI.Page
     {
-        public static string username;
+        public static string userID;
 
         String connString = ConfigurationManager.ConnectionStrings["ATMEntities"].ConnectionString;
         private char VerifyCredentials(string accountno, string pin)
         {
-            string query = "SELECT client_name FROM [Client_details] WHERE account_no = @AccountNo AND PINcode = @PIN";
+            string query = "SELECT userID FROM [Client_details] WHERE account_no = @AccountNo AND PINcode = @PIN";
             char userType = 'N';
 
             using (SqlConnection connection = new SqlConnection(connString))
@@ -32,14 +32,14 @@ namespace ATMModel
                     var result = command.ExecuteScalar();
                     if (result != null && result != DBNull.Value)
                     {
-                        username = result.ToString();
-                        Response.Redirect("User.aspx?username=" + username);
+                        userID = result.ToString();
+                        Response.Redirect("User.aspx?userID=" + userID);
                         userType = 'U';
 
                     }
                 }
             }
-            query = "SELECT manager_name FROM [Manager] WHERE account_no = @AccountNo AND PINcode = @PIN";
+            query = "SELECT managerID FROM [Manager] WHERE account_no = @AccountNo AND PINcode = @PIN";
 
             using (SqlConnection connection = new SqlConnection(connString))
             {
@@ -52,8 +52,8 @@ namespace ATMModel
                     var result = command.ExecuteScalar();
                     if (result != null && result != DBNull.Value)
                     {
-                        username = result.ToString();
-                        Response.Redirect("manager.aspx?username=" + username);
+                        userID = result.ToString();
+                        Response.Redirect("manager.aspx?managerID=" + userID);
                         userType = 'M';
 
                     }
@@ -61,7 +61,7 @@ namespace ATMModel
 
             }
 
-            query = "SELECT admin_name FROM [Admin] WHERE account_no = @AccountNo AND PINcode = @PIN";
+            query = "SELECT adminID FROM [Admin] WHERE account_no = @AccountNo AND PINcode = @PIN";
 
             using (SqlConnection connection = new SqlConnection(connString))
             {
@@ -74,9 +74,9 @@ namespace ATMModel
                     var result = command.ExecuteScalar();
                     if (result != null && result != DBNull.Value)
                     {
-                        username = result.ToString();
+                        userID = result.ToString();
                         userType = 'A';
-                        Response.Redirect("admin.aspx?username=" + username);
+                        Response.Redirect("admin.aspx?adminID=" + userID);
                     }
                 }
             }

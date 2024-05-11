@@ -1,5 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="transfer.aspx.cs" Inherits="ATM_Machine.transfer" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="transfer.aspx.cs" Inherits="ATM_Machine.client_transfer" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +6,7 @@
     <title>Transfer Money</title>
     <style>
         body {
+          
             font-family: Arial, sans-serif;
             /* text-align: center;*/
             /*margin: 512;*/
@@ -16,9 +16,11 @@
             align-items: center;
             height: 100vh;
             margin-top: 190px;
-            margin-bottom: 200px;
+            margin-bottom: 190px;
             margin-right: 200px;
-            margin-left: 250px;
+            margin-left: 350px;
+        background-color: #f4f4f4;
+
         }
         .button {
             width: 150px;
@@ -48,8 +50,9 @@
             margin-right: 50px;
             margin-left: 120px;
             border-radius: 5px;
-            color: white;
-            background-color: #007bff;
+                 background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px #0056b3;
             width:400px
         }
         .status_message{
@@ -58,25 +61,29 @@
             font-size:medium;
             margin-left: 220px;
         }
-        .inbox_button{
-            width:70px;
-            height:25px;
-            color:black;
-            background-color:white;
-            border: 1px solid #007bff;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            text-align: center;
-            cursor: pointer;
-        }
-        .inbox_button:hover {
-            background-color:silver;
-        }
-        .bottom-right {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-        }
+
+    .transfer-button {
+       	background: #fff;
+	font-size: 14px;
+	margin-top: 30px;
+	padding: 16px 20px;
+	border-radius: 26px;
+	border: 1px solid #D4D3E8;
+	font-weight: 700;
+    display: flow;
+	align-items: center;
+	width: 30%;
+	color: #4C489D;
+	box-shadow: 0px 2px 2px #5C5696;
+	cursor: pointer;
+	transition: .2s;
+}
+
+    .transfer-button:hover {
+        border-color: #6A679E;
+	outline: none;
+        background-color:  silver;
+    }
     </style>
 </head>
 <body>
@@ -85,23 +92,17 @@
             <h3>Current Balance:</h3>
             <div id="curr_balance" runat="server">
             </div>
-            <br /><br />
-            <asp:Label id="transferee_label" runat="server" Text="Send to:" placeholder="Enter Transferee Acccount Number"></asp:Label>
-            <asp:TextBox id="transferee_accno" runat="server" Width="80px"> </asp:TextBox>
-            <br />
+            <asp:Label id="transferee_label" runat="server" Text="Send to: " placeholder="Enter Transferee Acccount Number"></asp:Label>
+            <asp:TextBox id="transferee_accno" runat="server" Width="125px"> </asp:TextBox>
+             <br /><br />
             <asp:Label id="t_label" runat="server" Text="Transfer Amount:"></asp:Label>
             <asp:TextBox id="t_textbox" runat="server" Width="125px">
             </asp:TextBox>
             <br /><br />
-            <asp:Button ID="t_button" runat="server" Text="Transfer" CssClass="inbox_button" OnClick="Transfer_Button_Click"/>
+            <asp:Button ID="t_button" runat="server" Text="Transfer" CssClass="transfer-button" OnClick="Transfer_Button_Click"/>
         </form>
     </div>
-    <br />
     <div id="t_status" class="status_message" runat="server"></div>
-    <div class="bottom-right">
-    <a href="user.aspx">
-        <button class="button">Back to Home</button>
-    </a>
-    </div>
+
 </body>
 </html>

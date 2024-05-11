@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,18 +16,88 @@ namespace atm_project
         {
             String connString = ConfigurationManager.ConnectionStrings["ATMEntities"].ConnectionString;
 
-            if (!IsPostBack)
+            if (Request.QueryString["adminID"] != null)
             {
-                if (Request.QueryString["username"] != null)
-                {
-                    string username = Request.QueryString["username"].ToString();
-                    name.Text = username;
-                }
-                else
-                {
-                    Response.Redirect("login.aspx");
-                }
+                string query = "SELECT admin_name FROM [Admin] WHERE adminID = @adminID";
 
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@adminID", Request.QueryString["adminID"].ToString());
+                        connection.Open();
+                        var result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            name.Text = result.ToString();
+                        }
+                        else
+                        {
+                            // Handle the case where managerID is not found
+                            Response.Redirect("login.aspx");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // Redirect if managerID is not provided in the query string
+                Response.Redirect("login.aspx");
+            }
+        }
+
+        protected void viewuser_Click(object sender, EventArgs e)
+        {
+            string adminID = Request.QueryString["adminID"].ToString();
+            if (adminID != null)
+            {
+                Response.Redirect("view.aspx?adminID=" + adminID);
+            }
+        }
+
+        protected void adduser_Click(object sender, EventArgs e)
+        {
+            string adminID = Request.QueryString["adminID"].ToString();
+            if (adminID != null)
+            {
+                Response.Redirect("addition.aspx?adminID=" + adminID);
+            }
+        }
+
+        protected void removal_Click(object sender, EventArgs e)
+        {
+            string adminID = Request.QueryString["adminID"].ToString();
+            if (adminID != null)
+            {
+                Response.Redirect("removal.aspx?adminID=" + adminID);
+            }
+        }
+
+        protected void manview_Click(object sender, EventArgs e)
+        {
+            string adminID = Request.QueryString["adminID"].ToString();
+            if (adminID != null)
+            {
+                Response.Redirect("manview.aspx?adminID=" + adminID);
+            }
+        }
+
+        protected void manaddition_Click(object sender, EventArgs e)
+        {
+            string adminID = Request.QueryString["adminID"].ToString();
+            if (adminID != null)
+            {
+                Response.Redirect("manaddition.aspx?adminID=" + adminID);
+            }
+        }
+
+        protected void manremoval_Click(object sender, EventArgs e)
+        {
+            string adminID = Request.QueryString["adminID"].ToString();
+            if (adminID != null)
+            {
+                Response.Redirect("manremoval.aspx?adminID=" + adminID);
             }
         }
     }

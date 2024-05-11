@@ -16,18 +16,34 @@ namespace ATMModel
         {
             String connString = ConfigurationManager.ConnectionStrings["ATMEntities"].ConnectionString;
 
-            if (!IsPostBack)
+            if (Request.QueryString["userID"] != null)
             {
+                string query = "SELECT client_name FROM [client_details] WHERE  userID = @userID";
 
-                if (Request.QueryString["username"] != null)
+                using (SqlConnection connection = new SqlConnection(connString))
                 {
-                    string username = Request.QueryString["username"].ToString();
-                    name.Text = username;
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@userID", Request.QueryString["userID"].ToString());
+                        connection.Open();
+                        var result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            name.Text = result.ToString();
+                        }
+                        else
+                        {
+                            // Handle the case where managerID is not found
+                            Response.Redirect("login.aspx");
+                        }
+                    }
                 }
-                else
-                {
-                    Response.Redirect("login.aspx");
-                }
+            }
+            else
+            {
+                // Redirect if managerID is not provided in the query string
+                Response.Redirect("login.aspx");
             }
 
         }
