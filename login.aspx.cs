@@ -99,7 +99,7 @@ namespace ATMModel
                     Response.Redirect("admin.aspx");
                     break;
                 case 'U':
-                    Response.Redirect("user.aspx");
+                    Response.Redirect("User.aspx");
                     break;
                 case 'M':
                     Response.Redirect("manager.aspx");
