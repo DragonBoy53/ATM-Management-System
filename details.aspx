@@ -160,7 +160,8 @@
     <asp:Button ID="manremoval" runat="server" Text="Remove Manager" CssClass="Navbaropt" OnClick="manremoval_Click"  />
     <a href="login.aspx" class="Navbarlogout">Logout</a>
 </div>
-        <h1>User Details</h1>
+        <h1>User Details<asp:Label ID="Label1" runat="server" Text="Blank"></asp:Label>
+        </h1>
         <div class="container">
             <asp:Label ID="lblUsername" CssClass="label" runat="server" Text=""></asp:Label>
             <asp:Label ID="lblAccountNo" CssClass="label" runat="server" Text=""></asp:Label>

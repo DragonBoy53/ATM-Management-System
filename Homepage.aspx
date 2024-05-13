@@ -60,7 +60,7 @@ background-image: url("bg1.jpg");
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
   <div class="w3-display-topleft w3-padding-large w3-xlarge w3-animate-zoom">
-      <asp:Image ID="logo" runat="server" Imageurl="~/aze 4.png" />
+      <asp:Image ID="logo" runat="server" Imageurl="~/logo.png" />
   </div>
      <div class="w3-display-middle">    
     <h1 class="w3-jumbo w3-animate-top">

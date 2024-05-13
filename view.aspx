@@ -153,16 +153,17 @@
 </div>
     </div>
         <section>
-            <h1>Users list</h1>
+            <h1> Users list</h1>
         </section>
-        <div class="grid-container">
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ATMEntities %>" SelectCommand="SELECT userid, client_name FROM [client_details]"></asp:SqlDataSource>
-            <asp:GridView ID="userlist" runat="server" AutoGenerateColumns="False" DataKeyNames="userid" DataSourceID="SqlDataSource1"  OnRowDataBound="userlist_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Height="285px" Width="363px">
-    <Columns>
-        <asp:BoundField DataField="userID" HeaderText="User ID" />
-        <asp:BoundField DataField="client_name" HeaderText="Username" />
-      <asp:HyperLinkField HeaderText="Details" Text="View" DataNavigateUrlFields="userId" />
+       <div class="grid-container">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ATMEntities %>" SelectCommand="SELECT userid, client_name FROM [client_details]"></asp:SqlDataSource>
+    <asp:GridView ID="userlist" runat="server" AutoGenerateColumns="False" DataKeyNames="userid" DataSourceID="SqlDataSource1"  OnRowDataBound="userlist_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Height="285px" Width="363px">
+        <Columns>
+            <asp:BoundField DataField="userID" HeaderText="User ID" />
+            <asp:BoundField DataField="client_name" HeaderText="Username" />
 
+           <asp:HyperLinkField HeaderText="Details" Text="View" DataNavigateUrlFields="userid" DataNavigateUrlFormatString="details.aspx?userId={0}&amp;adminID={0}" />
+  
     </Columns>
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
@@ -177,21 +178,21 @@
         </div> 
     </form>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const navbar = document.getElementById('navbar');
-        const toggleButton = document.getElementById('toggleButton');
-        const closeButton = document.getElementById('closeButton');
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbar = document.getElementById('navbar');
+            const toggleButton = document.getElementById('toggleButton');
+            const closeButton = document.getElementById('closeButton');
 
-        toggleButton.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-            toggleButton.style.display = 'none'; // Hide toggle button when navbar is active
-        });
+            toggleButton.addEventListener('click', () => {
+                navbar.classList.toggle('active');
+                toggleButton.style.display = 'none'; // Hide toggle button when navbar is active
+            });
 
-        closeButton.addEventListener('click', () => {
-            navbar.classList.remove('active');
-            toggleButton.style.display = 'block'; // Show toggle button when navbar is closed
+            closeButton.addEventListener('click', () => {
+                navbar.classList.remove('active');
+                toggleButton.style.display = 'block'; // Show toggle button when navbar is closed
+            });
         });
-    });
     </script>
 </body>
 </html>

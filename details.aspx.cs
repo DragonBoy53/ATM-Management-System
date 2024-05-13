@@ -16,6 +16,7 @@ public partial class admin_details : System.Web.UI.Page
         {
             if (!IsPostBack)
             {
+            Label1.Text = Session["adminID"].ToString();
                 string userId = Request.QueryString["userId"];
                 if (!string.IsNullOrEmpty(userId))
                 {
@@ -59,7 +60,7 @@ public partial class admin_details : System.Web.UI.Page
         }
     protected void viewuser_Click(object sender, EventArgs e)
     {
-        string adminID = Request.QueryString["adminID"].ToString();
+        string adminID = Session["adminID"].ToString();
         if (adminID != null)
         {
             Response.Redirect("view.aspx?adminID=" + adminID);
@@ -68,7 +69,7 @@ public partial class admin_details : System.Web.UI.Page
 
     protected void adduser_Click(object sender, EventArgs e)
     {
-        string adminID = Request.QueryString["adminID"].ToString();
+        string adminID = Session["adminID"].ToString();
         if (adminID != null)
         {
             Response.Redirect("addition.aspx?adminID=" + adminID);
@@ -77,7 +78,7 @@ public partial class admin_details : System.Web.UI.Page
 
     protected void removal_Click(object sender, EventArgs e)
     {
-        string adminID = Request.QueryString["adminID"].ToString();
+        string adminID = Session["adminID"].ToString();
         if (adminID != null)
         {
             Response.Redirect("removal.aspx?adminID=" + adminID);
@@ -86,7 +87,7 @@ public partial class admin_details : System.Web.UI.Page
 
     protected void manview_Click(object sender, EventArgs e)
     {
-        string adminID = Request.QueryString["adminID"].ToString();
+        string adminID = Session["adminID"].ToString();
         if (adminID != null)
         {
             Response.Redirect("manview.aspx?adminID=" + adminID);
@@ -95,7 +96,7 @@ public partial class admin_details : System.Web.UI.Page
 
     protected void manaddition_Click(object sender, EventArgs e)
     {
-        string adminID = Request.QueryString["adminID"].ToString();
+        string adminID = Session["adminID"].ToString();
         if (adminID != null)
         {
             Response.Redirect("manaddition.aspx?adminID=" + adminID);
@@ -104,7 +105,7 @@ public partial class admin_details : System.Web.UI.Page
 
     protected void manremoval_Click(object sender, EventArgs e)
     {
-        string adminID = Request.QueryString["adminID"].ToString();
+        string adminID = Session["adminID"].ToString();
         if (adminID != null)
         {
             Response.Redirect("manremoval.aspx?adminID=" + adminID);
@@ -112,10 +113,12 @@ public partial class admin_details : System.Web.UI.Page
     }
     protected void adminhome_Click(object sender, EventArgs e)
     {
-        string adminID = Request.QueryString["adminID"].ToString();
+        string adminID = Session["adminID"].ToString();
         if (adminID != null)
         {
+            //before redirect run krta hai
             Response.Redirect("admin.aspx?adminID=" + adminID);
+            //code after redirect does not run
         }
     }
 }

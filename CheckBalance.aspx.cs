@@ -146,6 +146,10 @@ namespace ATMModel
             string mid = Request.QueryString["managerID"].ToString();
             Response.Redirect("manager.aspx?managerID=" + mid);
         }
-        
+        protected void homebutton_Click(object sender, EventArgs e)
+        {
+            string mid = Request.QueryString["managerID"].ToString();
+            Response.Redirect("manager.aspx?managerID=" + mid);
+        }
     }
 }

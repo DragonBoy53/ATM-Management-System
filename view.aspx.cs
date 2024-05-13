@@ -14,6 +14,7 @@ namespace atm_project
         string connString = ConfigurationManager.ConnectionStrings["ATMEntities"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["adminID"]= Request.QueryString["adminID"].ToString(); 
         }
 
         protected void view_Click(object sender, EventArgs e)
@@ -86,17 +87,15 @@ namespace atm_project
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                // Find the HyperLinkField dynamically
-                HyperLinkField detailsLink = (HyperLinkField)e.Row.Cells[0].Controls.OfType<HyperLinkField>().FirstOrDefault();
+                HyperLinkField detailsLink = e.Row.Cells[0].Controls.OfType<HyperLinkField>().FirstOrDefault();
                 if (detailsLink != null)
                 {
-                    string userId = DataBinder.Eval(e.Row.DataItem, "userId").ToString();
-                    string adminID = Request.QueryString["adminID"];
-                    detailsLink.NavigateUrl = "details.aspx?userId={userId}";   
+                    string userId = DataBinder.Eval(e.Row.DataItem, "userID").ToString();
+                    string adminId = Request.QueryString["adminID"];
+                    detailsLink.NavigateUrl = "details.aspx?userId=" + userId + "&adminID=" + adminId;
                 }
             }
         }
-
-
     }
 }
+

@@ -13,6 +13,7 @@ namespace atm_project
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["adminID"] = Request.QueryString["adminID"].ToString();
         }
 
         protected void view_Click(object sender, EventArgs e)

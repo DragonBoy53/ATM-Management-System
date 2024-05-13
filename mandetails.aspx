@@ -49,7 +49,7 @@
             border-top: 1px solid #0056b3;
             margin: 20px 0;
         }
-        .navbar {
+                .navbar {
     position: fixed;
     top: 0;
     left: 0;
@@ -146,7 +146,20 @@
     </style>
 </head>
 <body>
+        <button class="toggle-button" id="toggleButton">Menu</button>
+
     <form id="form1" runat="server">
+<div class="navbar" id="navbar">
+    <span class="close-button" id="closeButton">Close</span> 
+    <asp:Button ID="AdminHome" runat="server" Text="Home" CssClass="Navbaropt" OnClick="adminhome_Click" />
+    <asp:Button ID="viewuser" runat="server" Text="View Users" CssClass="Navbaropt" OnClick="viewuser_Click" />
+    <asp:Button ID="adduser" runat="server" Text="Add User" CssClass="Navbaropt" OnClick="adduser_Click"  />
+    <asp:Button ID="removal" runat="server" Text="Remove User" CssClass="Navbaropt" OnClick="removal_Click"  />
+    <asp:Button ID="manview" runat="server" Text="View Managers" CssClass="Navbaropt" OnClick="manview_Click"  />
+    <asp:Button ID="manaddition" runat="server" Text="Add Manager" CssClass="Navbaropt" OnClick="manaddition_Click"  />
+    <asp:Button ID="manremoval" runat="server" Text="Remove Manager" CssClass="Navbaropt" OnClick="manremoval_Click"  />
+    <a href="login.aspx" class="Navbarlogout">Logout</a>
+</div>
         <h1>Manager Details</h1>
         <div class="container">
             <asp:Label ID="lblUsername" CssClass="label" runat="server" Text=""></asp:Label>
@@ -155,5 +168,22 @@
             <asp:Label ID="lblStatus" CssClass="label" runat="server" Text=""></asp:Label>
         </div>
     </form>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('navbar');
+    const toggleButton = document.getElementById('toggleButton');
+    const closeButton = document.getElementById('closeButton');
+
+    toggleButton.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+        toggleButton.style.display = 'none'; // Hide toggle button when navbar is active
+    });
+
+    closeButton.addEventListener('click', () => {
+        navbar.classList.remove('active');
+        toggleButton.style.display = 'block'; // Show toggle button when navbar is closed
+    });
+});
+    </script>
 </body>
 </html>

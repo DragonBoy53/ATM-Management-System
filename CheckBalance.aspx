@@ -175,6 +175,7 @@
 
  <div class="navbar" id="navbar">
      <span class="close-button" id="closeButton">Close</span>     
+     <asp:Button ID="homebutton" runat="server" Text="Home" CssClass="Navbaropt" OnClick="homebutton_Click" />
      <asp:Button ID="checkbalancebutton" runat="server" Text="Check Balance" CssClass="Navbaropt" OnClick="checkbalancebutton_Click" />
      <asp:Button ID="atmstatus" runat="server" Text="ATM Status" CssClass="Navbaropt" OnClick="atmstatus_Click" />
      <a href="login.aspx" class="Navbarlogout">Logout</a>
