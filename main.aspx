@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +14,7 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
+        background: linear-gradient(90deg,  #0B172F ,#C7C5F4);
     }
     .button {
         width: 200px;
@@ -34,6 +35,8 @@
         margin-bottom: 20px; /* Add some space below the heading */
         text-align: center;
         align-items: center;
+        color: white;
+        font-size: 30px;
     }
     .button:hover {
         background-color: #0056b3;
