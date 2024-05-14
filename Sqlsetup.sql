@@ -43,7 +43,7 @@ transtime datetime not null
 
 create table transferer
 (
-transID not null foreign key references transaction_history(transID),
+transID int not null foreign key references transaction_history(transID),
 userID int foreign key references client_details(userID),
 managerID int foreign key references manager(managerID)
 );
