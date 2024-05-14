@@ -11,7 +11,7 @@ using System.Reflection.Emit;
 
 public partial class userdetails : System.Web.UI.Page
 {
-    String connString = ConfigurationManager.ConnectionStrings["ATM_Machine"].ConnectionString;
+    String connString = ConfigurationManager.ConnectionStrings["ATMEntities"].ConnectionString;
 
     protected void Page_Load(object sender, EventArgs e)
     {
