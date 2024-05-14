@@ -14,7 +14,7 @@ use ATM;
  manager_name varchar(100) not null,
  account_no varchar(100) not null,
  PINcode int not null,
- attemps int default 0 );
+ attempts int default 0 );
  
 
  create table client_details
